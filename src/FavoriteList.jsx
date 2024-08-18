@@ -15,7 +15,7 @@ const removeFavorite=props.removeFavorite
     <div className='bg-slate-300 flex flex-col items-center p-10'>
       <h2 className=' text-xl font-bold my-6'>Favorite Students</h2>
       {favorites.length > 0 ? (
-        <ul className='border border-black p-6'>
+        <ul className='p-6'>
           {favorites.map(favorite => (
             <div className='p-2 flex flex-col'>
                 <li className='flex gap-10' key={favorite.id}>
