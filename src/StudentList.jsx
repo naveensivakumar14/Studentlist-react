@@ -2,19 +2,8 @@
 import React, { useState } from 'react';
 
 
-
-
 const StudentList = (props) => {
-  // Initial list of students
-//   const [students, setStudents] = useState([
-//     { id: 1, name: 'Alice' },
-//     { id: 2, name: 'Bob' },
-//     { id: 3, name: 'Charlie' },
-//     { id: 4, name: 'David' }
-//   ]);
 
-  // State to track favorite students
-//   const [favorites, setFavorites] = useState([]);
 
 const students=props.students
 const setStudents=props.setStudents
@@ -23,8 +12,21 @@ const favorites=props.favorites
 const setFavorites=props.setFavorites
 
 
+//useState for user input
+const [newStudent, setnewStudent]=useState()
 
 
+//getting data from user input
+ const handleChange=(event)=>{
+  setnewStudent(event.target.value);
+  console.log(newStudent);
+ }
+
+ //adding new students name to students array of object
+ function addStudent(){
+  setStudents([...students,{id: students.length+1, name:newStudent}]);
+
+ }
 
 
 
@@ -41,11 +43,18 @@ const setFavorites=props.setFavorites
   return (
     <div className='bg-slate-300  p-10 flex  flex-col items-center'>
       <h2 className='text-xl my-6 font-bold'>Students</h2>
+
+      <div>
+        <input onChange={handleChange} className='p-1 border border-black' type="text" />
+        <button onClick={addStudent}  className='bg-green-400 border border-black p-1 ml-1'>Add</button>
+      </div>
+
+
       <ul className='p-6'>
         {students.map(student => (
             <div className=' p-2 m-2 flex justify-evenly'>
                 <li className=' flex gap-10'  key={student.id}> {student.name}
-                    <button className='bg-green-400 border rounded-md p-1' onClick={() => addFavorite(student.id)} disabled={favorites.some(fav => fav.id === student.id)}>
+                    <button className='bg-green-400 border border-black rounded-sm p-1' onClick={() => addFavorite(student.id)} disabled={favorites.some(fav => fav.id === student.id)}>
                     {/* conditional rendering */}
                     {favorites.some(fav => fav.id === student.id) ? 'Favorited' : 'Add to Favorites'}
                     </button>

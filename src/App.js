@@ -9,7 +9,7 @@ import FavoriteList from './FavoriteList';
 
 function App() {
 
-
+  // Initial list of student
   const [students, setStudents] = useState([
     { id: 1, name: 'Arjun' },
     { id: 2, name: 'Balaji' },
@@ -19,12 +19,10 @@ function App() {
     { id: 6, name: 'Vignesh'}
   ]);
 
+  // State to track favorite students
   const [favorites, setFavorites] = useState([]);
 
-   // Function to remove a student from the favorites list
-   const removeFavorite = (id) => {
-    setFavorites(favorites.filter(fav => fav.id !== id));
-  };
+   
  
 
 
@@ -37,8 +35,9 @@ function App() {
       </div>
       
       <Routes>
+        {/* most-important root file path is more important for page navigations */}
         <Route path='/StudentList' element={<StudentList students={students} setStudents={setStudents} favorites={favorites} setFavorites={setFavorites} />}></Route>
-        <Route path='/FavoriteList' element={<FavoriteList students={students} setStudents={setStudents} favorites={favorites} setFavorites={setFavorites} removeFavorite={removeFavorite} />}></Route>
+        <Route path='/FavoriteList' element={<FavoriteList students={students} setStudents={setStudents} favorites={favorites} setFavorites={setFavorites}  />}></Route>
       </Routes>
       </BrowserRouter>
   );
